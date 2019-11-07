@@ -25,7 +25,7 @@ json_lines = json_lines[0] + json_lines[1] + json_lines[2]
 json_str = '[' + ','.join(json_lines) + ']'
 json_objs = json.loads(json_str)
 
-programs = pd.DataFrame(json_objs)[:300]
+programs = pd.DataFrame(json_objs)
 programs.columns = ['code', 'comment']
 
 print('Data size:', len(programs))
