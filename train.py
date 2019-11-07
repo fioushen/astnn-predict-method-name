@@ -29,7 +29,7 @@ def get_batch(dataset, i, batch_size):
 
 MAX_LABEL = max(programs['label'])
 
-print('Max label:', MAX_LABEL, flush=True)
+print('Max label:', MAX_LABEL)
 
 BATCH_SIZE = 512
 EPOCH = 50
@@ -73,7 +73,7 @@ def train(dataset, backward=True):
     return total_loss / total, total_acc / total
 
 
-print('Start Training...', flush=True)
+print('Start Training...')
 for epoch in range(EPOCH):
     start_time = time.time()
 
@@ -84,11 +84,11 @@ for epoch in range(EPOCH):
     print('[Epoch: %2d/%2d] Train Loss: %.4f, Train Acc: %.3f, Val Loss: %.4f, Val Acc: %.3f, Time Cost: %.3f s'
           % (epoch + 1, EPOCH,
              training_loss, training_acc, validation_loss, validation_acc,
-             end_time - start_time), flush=True)
+             end_time - start_time))
     torch.save(net.state_dict(), './data/params_epoch[%d].pkl' % (epoch + 1))
 
 test_loss, test_acc = train(test_set, backward=False)
-print('Test Acc: %.3f' % test_acc, flush=True)
+print('Test Acc: %.3f' % test_acc)
 
 torch.save(net.state_dict(), './data/params.pkl')
-print('Saved model parameters at', './data/params.pkl', flush=True)
+print('Saved model parameters at', './data/params.pkl')

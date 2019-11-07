@@ -28,3 +28,7 @@ it should contains `data/train.json`, `data/valid.json` and `data/test.json`
 5. Run `python ./train.py` to train the model. It will train 50 epoch in default, 2-3 hours pre epoch.
 Model will be saved per epoch.
 
+> Hint: if you want to run xxx.py background and print to a file (as a example, xxx.log), 
+> use the following command on Linux:
+> ``` nohup python -u xxx.py > xxx.log 2>&1 &```
+

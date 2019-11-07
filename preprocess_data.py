@@ -13,13 +13,13 @@ def java_method_to_ast(method):
     return tree
 
 
-print('Reading data...', flush=True)
+print('Reading data...')
 
 json_files = [open('./data/train.json'), open('./data/valid.json'), open('./data/test.json')]
 json_lines = [file.readlines() for file in json_files]
 line_count = [len(lines) for lines in json_lines]
 
-print('SIZE of [Training set, Validation set, Test set] =', line_count, flush=True)
+print('SIZE of [Training set, Validation set, Test set] =', line_count)
 
 json_lines = json_lines[0] + json_lines[1] + json_lines[2]
 json_str = '[' + ','.join(json_lines) + ']'
@@ -28,9 +28,9 @@ json_objs = json.loads(json_str)
 programs = pd.DataFrame(json_objs)
 programs.columns = ['code', 'comment']
 
-print('Data size:', len(programs), flush=True)
+print('Data size:', len(programs))
 
-print('Parsing to AST...', flush=True)
+print('Parsing to AST...')
 
 programs['ast'] = programs['code'].apply(java_method_to_ast)
 programs['name'] = programs['ast'].apply(lambda root: root.name)
@@ -38,9 +38,9 @@ counter = Counter(programs['name'])
 names = sorted(set(programs['name']))
 programs['label'] = programs['name'].apply(lambda name: names.index(name) + 1)
 
-print('Name Count:', len(counter), flush=True)
+print('Name Count:', len(counter))
 
-print('Training word embedding...', flush=True)
+print('Training word embedding...')
 
 programs['corpus'] = programs['ast'].apply(util.ast2sequence)
 
@@ -63,7 +63,7 @@ def ast_to_index(ast):
     return [node_to_index(b) for b in blocks]
 
 
-print('Transforming ast to embedding index tree...', flush=True)
+print('Transforming ast to embedding index tree...')
 
 programs['index_tree'] = programs['ast'].apply(ast_to_index)
 
@@ -74,8 +74,8 @@ programs.pop('corpus')
 programs.pop('comment')
 
 w2v.save('./data/w2v_128')
-print("Saved word2vec model at", './data/w2v_128', flush=True)
+print("Saved word2vec model at", './data/w2v_128')
 programs.to_pickle('./data/programs.pkl')
-print("Saved processed data at", './data/programs.pkl', flush=True)
+print("Saved processed data at", './data/programs.pkl')
 
 
