@@ -16,9 +16,9 @@ print('Reading data...')
 w2v = Word2Vec.load('./data/w2v_128').wv
 embeddings = torch.tensor(np.vstack([w2v.vectors, [0] * 128]))
 
-programs = pd.read_pickle('./data/programs.pkl').sample(frac=1)
+programs = pd.read_pickle('./data/programs.pkl')
 
-training_set = programs[:TRAINING_SET_SIZE]
+training_set = programs[:TRAINING_SET_SIZE].sample(frac=1)
 validation_set = programs[TRAINING_SET_SIZE:TRAINING_SET_SIZE + VALIDATION_SET_SIZE]
 test_set = programs[TRAINING_SET_SIZE + VALIDATION_SET_SIZE:TRAINING_SET_SIZE + VALIDATION_SET_SIZE + TEST_SET_SIZE]
 
