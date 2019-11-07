@@ -3,7 +3,7 @@
 ## How To Run
 
 0. Machine required：
-    * GPU (>= 6GB) (if no, modify train.py (line no. 36) and set `ASTNN(...use_gpu=False...)`)
+    * GPU (>= 6GB) (if no, modify train.py and set `ASTNN(...use_gpu=False...)`)
     * 16GB main memory
     * 2GB disk
 

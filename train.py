@@ -7,16 +7,16 @@ import time
 
 from model import ASTNN
 
-TRAINING_SET_SIZE = 470486
-VALIDATION_SET_SIZE = 58811
-TEST_SET_SIZE = 58811
+TRAINING_SET_SIZE = 100
+VALIDATION_SET_SIZE = 100
+TEST_SET_SIZE = 100
 
 print('Reading data...')
 
 w2v = Word2Vec.load('./data/w2v_128').wv
 embeddings = torch.tensor(np.vstack([w2v.vectors, [0] * 128]))
 
-programs = pd.read_pickle('./data/train.pkl')
+programs = pd.read_pickle('./data/programs.pkl')
 
 training_set = programs[:TRAINING_SET_SIZE]
 validation_set = programs[TRAINING_SET_SIZE:TRAINING_SET_SIZE + VALIDATION_SET_SIZE]
