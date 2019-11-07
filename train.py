@@ -16,7 +16,7 @@ print('Reading data...')
 w2v = Word2Vec.load('./data/w2v_128').wv
 embeddings = torch.tensor(np.vstack([w2v.vectors, [0] * 128]))
 
-programs = pd.read_pickle('./data/programs.pkl')
+programs = pd.read_pickle('./data/programs.pkl').sample(frac=1)
 
 training_set = programs[:TRAINING_SET_SIZE]
 validation_set = programs[TRAINING_SET_SIZE:TRAINING_SET_SIZE + VALIDATION_SET_SIZE]
@@ -32,7 +32,7 @@ MAX_LABEL = max(programs['label'])
 print('Max label:', MAX_LABEL)
 
 BATCH_SIZE = 64
-EPOCH = 20
+EPOCH = 50
 net = ASTNN(output_dim=MAX_LABEL,
             embedding_dim=128, num_embeddings=len(w2v.vectors) + 1, embeddings=embeddings,
             batch_size=BATCH_SIZE)

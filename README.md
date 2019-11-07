@@ -25,6 +25,6 @@ it should contains `data/train.json`, `data/valid.json` and `data/test.json`
     
 4. Run `python ./preprocess_data.py` to preprocess data, some hours needed.
 
-5. Run `python ./train.py` to train the model. It will train 30 epoch in default, 2-3 hours pre epoch.
+5. Run `python ./train.py` to train the model. It will train 50 epoch in default, 2-3 hours pre epoch.
 Model will be saved per epoch.
 
