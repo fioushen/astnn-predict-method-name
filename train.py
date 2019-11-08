@@ -31,7 +31,7 @@ MAX_LABEL = max(programs['label'])
 
 print('Max label:', MAX_LABEL)
 
-BATCH_SIZE = 512
+BATCH_SIZE = 64
 EPOCH = 50
 net = ASTNN(output_dim=MAX_LABEL,
             embedding_dim=128, num_embeddings=len(w2v.vectors) + 1, embeddings=embeddings,
