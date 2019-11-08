@@ -34,8 +34,8 @@ print('Parsing to AST...')
 
 programs['ast'] = programs['code'].apply(java_method_to_ast)
 programs['name'] = programs['ast'].apply(lambda root: root.name)
-for i in range(len(programs['ast'])):
-    programs['ast'][i].name = 'METHOD_NAME'
+for ast in programs['ast']:
+    ast.name = 'METHOD_NAME'
 counter = Counter(programs['name'])
 names = sorted(set(programs['name']))
 programs['label'] = programs['name'].apply(lambda name: names.index(name) + 1)
